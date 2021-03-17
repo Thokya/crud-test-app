@@ -1,0 +1,47 @@
+<!-- Header -->
+<%- include('include/_header')%>
+
+
+    <!-- Main -->
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex justify-between">
+                <div class="filter">
+                    <a href="/">All Categories</a>
+                </div>
+            </div>
+
+            <div class="form-title text-center">
+                <h2 class="text-dark">Update Category</h2>
+                <!-- <span class="text-light">Create new category</span> -->
+            </div>
+
+
+            <!-- Form -->
+            <form id="update_cat" method="POST">
+                <div class="new_cat">
+                    <div class="form-group">
+                        <label for="id" class="text-light">Category ID</label>
+                        <input type="hidden" name="id" value="">
+                        <input type="text" name="id" value="" placeholder="ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="text-light">Category Name</label>
+                        <input type="hidden" name="id" value="">
+                        <input type="text" name="name" value="" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn text-dark update">Save</button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </main>
+    <!-- /Main -->
+
+
+
+    <!-- Footer -->
+    <%- include('include/_footer')%>
