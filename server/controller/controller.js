@@ -30,15 +30,34 @@ exports.create = (req, res) => {
 
 // show all category/single category
 exports.find = (req, res) => {
-    Catdb.find()
-        .then(category => {
-            res.send(category)
-        })
-        .catch(e => {
-            res.status(500).send({
-                message: e.message || "Some error has occured while retriving category information"
+
+    if (req.query.id) {
+        const id = req.query.id;
+        Catdb.findById(id)
+            .then(data => {
+                if (!data) {
+                    res.status(404).send({
+                        message: `No entry found with ID : ${id}`
+                    });
+                } else {
+                    res.send(data);
+                }
+            }).catch(e => {
+                res.status(500).send({
+                    message: `Error retriving category with ID : ${id}`
+                });
             });
-        });
+    } else {
+        Catdb.find()
+            .then(category => {
+                res.send(category)
+            })
+            .catch(e => {
+                res.status(500).send({
+                    message: e.message || "Some error has occured while retriving category information"
+                });
+            });
+    }
 }
 
 // update new category
