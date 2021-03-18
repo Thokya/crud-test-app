@@ -30,7 +30,15 @@ exports.create = (req, res) => {
 
 // show all category/single category
 exports.find = (req, res) => {
-
+    CatDB.find()
+        .then(category => {
+            res.send(category)
+        })
+        .catch(e => {
+            res.status(500).send({
+                message: e.message || "Some error has occured while retriving category information"
+            });
+        });
 }
 
 // update new category
