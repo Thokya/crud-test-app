@@ -64,5 +64,20 @@ exports.update = (req, res) => {
 
 // delete category
 exports.delete = (req, res) => {
-
+    const id = req.params.id;
+    Catdb.findByIdAndDelete(id)
+        .then(data => {
+            if (!data) {
+                res.status(404).send({ message: `Cannot delete with ${id}. ${id} could be wrong` });
+            } else {
+                res.send({
+                    message: `Category with ID as ${id} was deleted successfully`
+                });
+            }
+        })
+        .catch(e => {
+            res.status(500).send({
+                message: `Could not delete category with ID : ${id}`
+            });
+        });
 }
