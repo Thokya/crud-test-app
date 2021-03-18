@@ -1,5 +1,14 @@
+const axios = require('axios');
+
 exports.homeRoutes = (req, res) => {
-    res.render('index');
+    // get request to API /api/category
+    axios.get('http://localhost:3000/api/category')
+        .then(function (response) {
+            // console.log(response.data);
+            res.render('index', { categories: response.data });
+        }).catch(e => {
+            res.send(e);
+        })
 };
 
 exports.add_category = (req, res) => {
