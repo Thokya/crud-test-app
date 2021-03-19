@@ -19,12 +19,11 @@ exports.create = (req, res) => {
     category
         .save(category)
         .then(data => {
-            res.send(data);
+            // res.send(data);
+            res.redirect('/add_category');
         })
         .catch(e => {
-            res.status(500).send({
-                message: e.message || "Some error has occured while create operation"
-            });
+            res.status(500).send({ message: e.message || "Some error has occured while create operation" });
         });
 }
 
@@ -43,9 +42,7 @@ exports.find = (req, res) => {
                     res.send(data);
                 }
             }).catch(e => {
-                res.status(500).send({
-                    message: `Error retriving category with ID : ${id}`
-                });
+                res.status(500).send({ message: `Error retriving category with ID : ${id}` });
             });
     } else {
         Catdb.find()
@@ -53,9 +50,7 @@ exports.find = (req, res) => {
                 res.send(category)
             })
             .catch(e => {
-                res.status(500).send({
-                    message: e.message || "Some error has occured while retriving category information"
-                });
+                res.status(500).send({ message: e.message || "Some error has occured while retriving category information" });
             });
     }
 }
@@ -89,14 +84,10 @@ exports.delete = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `Cannot delete with ${id}. ${id} could be wrong` });
             } else {
-                res.send({
-                    message: `Category with ID as ${id} was deleted successfully`
-                });
+                res.send({ message: `Category with ID as ${id} was deleted successfully` });
             }
         })
         .catch(e => {
-            res.status(500).send({
-                message: `Could not delete category with ID : ${id}`
-            });
+            res.status(500).send({ message: `Could not delete category with ID : ${id}` });
         });
 }
